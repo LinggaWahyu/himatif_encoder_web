@@ -66,6 +66,7 @@ class BeritaDataTable extends DataTable
     {
         return [
             'title',
+            'slug',
             'description',
             'thumbnail',
             'category_id',

@@ -17,8 +17,6 @@ class Divisi extends Model
 {
 
     public $table = 'divisis';
-    
-
 
 
     public $fillable = [
@@ -49,5 +47,12 @@ class Divisi extends Model
         'description' => 'required'
     ];
 
-    
+    public function scopeDescriptionCut()
+    {
+        $limit = 30 - mb_strlen('...'); // Take into account $end string into the limit
+        $valuelen = mb_strlen($this->description);
+        return $limit < $valuelen ? mb_substr($this->description, 0, mb_strrpos($this->description, ' ', $limit -
+                $valuelen)) . '...' : $this->description;
+    }
+
 }

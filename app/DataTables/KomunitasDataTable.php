@@ -67,11 +67,6 @@ class KomunitasDataTable extends DataTable
         return [
             'name',
             'type',
-            'description',
-            'image',
-            'instagram_link',
-            'facebook_link',
-            'youtube_link'
         ];
     }
 

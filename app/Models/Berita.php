@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Support\Str;
 
 /**
  * Class Berita
@@ -19,12 +20,11 @@ class Berita extends Model
 {
 
     public $table = 'beritas';
-    
-
 
 
     public $fillable = [
         'title',
+        'slug',
         'description',
         'thumbnail',
         'category_id',
@@ -56,5 +56,33 @@ class Berita extends Model
         'category_id' => 'required'
     ];
 
-    
+    protected static function booted()
+    {
+        // if prod w/ slug is exist then add random str
+        $fn = function ($slug) {
+            $slug = preg_replace('/\s+/', '-', $slug);
+            $exist = self::where('slug', $slug)->first();
+            if ($exist) {
+                $slug = $slug . "-" . Str::random(4);
+            }
+            return $slug;
+        };
+
+        static::creating(function ($berita) use ($fn) {
+            $berita->slug = $fn($berita->title);
+        });
+    }
+
+    public function scopeCreatedAtDateFormat()
+    {
+        return date('d F Y', strtotime($this->created_at));
+    }
+
+    public function scopeDescriptionCut()
+    {
+        $limit = 100 - mb_strlen('...'); // Take into account $end string into the limit
+        $valuelen = mb_strlen($this->description);
+        return $limit < $valuelen ? mb_substr($this->description, 0, mb_strrpos($this->description, ' ', $limit -
+                $valuelen)) . '...' : $this->description;
+    }
 }

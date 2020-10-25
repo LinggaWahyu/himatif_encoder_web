@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Constants;
 use Illuminate\Database\Eloquent\Model as Model;
 
 /**
@@ -21,9 +22,6 @@ class Komunitas extends Model
 {
 
     public $table = 'komunitas';
-    
-
-
 
     public $fillable = [
         'name',
@@ -62,5 +60,7 @@ class Komunitas extends Model
         'description' => 'required'
     ];
 
-    
+    public function galeryKomunitas() {
+        return $this->hasMany(GaleriKomunitas::class, 'komunitas_id');
+    }
 }
