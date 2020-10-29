@@ -31,16 +31,16 @@ class ProfileJurusanController extends Controller
     public function kepengurusan()
     {
         $divisi = $this->divisi::all();
-        $pengurus = $this->pengurus::all();
+        $pengurus = $this->pengurus::with('jabatanPengurus')->get();
         $data = array();
 
         foreach ($divisi as $key => $item) {
             foreach ($pengurus as $keys =>$value) {
-                if ($item->divisi_id == $value->divisi_id) {
+                if ($item->id == $value->divisi_id) {
                     $data[$item->name][$keys] = $value;
                 }
             }
         }
-        return view('frontend.profile-jurusan.kepengurusan');
+        return view('frontend.profile-jurusan.kepengurusan', compact('data'));
     }
 }

@@ -29,7 +29,7 @@ class GaleriKomunitasDataTable extends DataTable
      */
     public function query(GaleriKomunitas $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('komunitas');
     }
 
     /**
@@ -44,10 +44,10 @@ class GaleriKomunitasDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'dom' => 'Bfrtip',
                 'stateSave' => true,
-                'order'     => [[0, 'desc']],
-                'buttons'   => [
+                'order' => [[0, 'desc']],
+                'buttons' => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -65,8 +65,9 @@ class GaleriKomunitasDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'photo',
-            'komunitas_id'
+            'photo' => ['name' => 'photo', 'data' => 'photo', 'render' => '"<img src=\"/storage/"+data+"\" height=\"50\"/>"'],
+            'komunitas_id' => new \Yajra\DataTables\Html\Column(['title' => 'Type', 'data' => 'komunitas.type', 'name'
+            => 'komunitas.type']),
         ];
     }
 

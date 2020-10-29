@@ -65,7 +65,7 @@ class GaleriUmumDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'photo',
+            'photo' => ['name' => 'photo', 'data' => 'photo', 'render' => '"<img src=\"/storage/"+data+"\" height=\"50\"/>"'],
             'title'
         ];
     }

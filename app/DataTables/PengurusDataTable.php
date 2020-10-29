@@ -29,7 +29,7 @@ class PengurusDataTable extends DataTable
      */
     public function query(Pengurus $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['jabatanPengurus', 'divisi']);
     }
 
     /**
@@ -65,10 +65,12 @@ class PengurusDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'photo' => ['name' => 'photo', 'data' => 'photo', 'render' => '"<img src=\"/storage/"+data+"\" height=\"50\"/>"'],
             'nama',
-            'jabatan_id',
-            'photo',
-            'divisi_id'
+            'jabatan_id' => new \Yajra\DataTables\Html\Column(['title' => 'Jabatan', 'data' => 'jabatan_pengurus.nama',
+                'name' => 'jabatan_pengurus.nama']),
+            'divisi_id' => new \Yajra\DataTables\Html\Column(['title' => 'Divisi', 'data' => 'divisi.name', 'name'
+            => 'divisi.name']),
         ];
     }
 

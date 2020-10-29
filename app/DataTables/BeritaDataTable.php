@@ -29,7 +29,7 @@ class BeritaDataTable extends DataTable
      */
     public function query(Berita $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['categoryBerita']);
     }
 
     /**
@@ -66,10 +66,8 @@ class BeritaDataTable extends DataTable
     {
         return [
             'title',
-            'slug',
-            'description',
-            'thumbnail',
-            'category_id',
+            'category_id' => new \Yajra\DataTables\Html\Column(['title' => 'Kategori berita', 'data' => 'category_berita.name',
+                'name' => 'category_berita.name']),
             'isshow'
         ];
     }

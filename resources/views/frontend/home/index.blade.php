@@ -134,7 +134,7 @@
                     <div class="col-12" data-aos="fade-down">
                         <h1>Divisi Himatif</h1>
                         <p>
-                            Pengurus Himatif Encoder Tahun 2019 memiliki 58 Pengurus yang
+                            Pengurus Himatif Encoder Tahun 2019 memiliki {{$pengurus}} Pengurus yang
                             terbagi dalam {{count($divisi)}} Divisi diantaranya yaitu :
                         </p>
                     </div>

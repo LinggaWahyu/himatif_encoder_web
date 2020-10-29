@@ -18,7 +18,7 @@ class Pengurus extends Model
 {
 
     public $table = 'penguruses';
-    
+
 
 
 
@@ -54,5 +54,11 @@ class Pengurus extends Model
         'divisi_id' => 'required'
     ];
 
-    
+    public function jabatanPengurus() {
+        return $this->hasOne(JabatanPengurus::class, 'id', 'jabatan_id');
+    }
+
+    public function divisi() {
+        return $this->hasOne(Divisi::class, 'id', 'divisi_id');
+    }
 }

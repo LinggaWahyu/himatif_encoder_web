@@ -85,4 +85,8 @@ class Berita extends Model
         return $limit < $valuelen ? mb_substr($this->description, 0, mb_strrpos($this->description, ' ', $limit -
                 $valuelen)) . '...' : $this->description;
     }
+
+    public function categoryBerita() {
+        return $this->hasOne(CategoryBerita::class, 'id', 'category_id');
+    }
 }

@@ -10,7 +10,7 @@
 
     @include('frontend.layouts.css')
 </head>
-<body onload="initialize()">
+<body>
 @include('frontend.layouts.nav')
 
 @yield('content')

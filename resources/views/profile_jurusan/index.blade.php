@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Pengurus
+            Profile Jurusan
         </h1>
     </section>
     <div class="content">

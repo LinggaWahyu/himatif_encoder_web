@@ -32,12 +32,14 @@ Route::namespace('Frontend')->group(function () {
 
     Route::get('/kontak', 'KontakController@index')->name('frontend.kontak.index');
     Route::post('/kontak', 'KontakController@store')->name('frontend.kontak.store');
+
+    Route::get('/about-developer', 'DeveloperController@index')->name('frontend.developer.index');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true, 'register' => false]);
 
 Route::prefix('admin')->middleware('auth')->namespace('Admin')->group(function () {
-    Route::get('/home', 'HomeController@index')->middleware('verified');
+//    Route::get('/home', 'HomeController@index')->middleware('verified');
 
     Route::resource('divisis', 'DivisiController');
 

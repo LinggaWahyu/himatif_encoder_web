@@ -65,8 +65,8 @@ class DeveloperDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'photo' => ['name' => 'photo', 'data' => 'photo', 'render' => '"<img src=\"/storage/"+data+"\" height=\"50\"/>"'],
             'name',
-            'photo',
             'role'
         ];
     }

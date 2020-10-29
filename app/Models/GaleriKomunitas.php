@@ -16,7 +16,7 @@ class GaleriKomunitas extends Model
 {
 
     public $table = 'galeri_komunitas';
-    
+
 
 
 
@@ -46,5 +46,7 @@ class GaleriKomunitas extends Model
         'komunitas_id' => 'required'
     ];
 
-    
+    public function komunitas() {
+        return $this->hasOne(Komunitas::class, 'id', 'komunitas_id');
+    }
 }

@@ -40,7 +40,7 @@
                     <a href="{{route('frontend.berita.index')}}" class="nav-link">Berita</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/gallery.html" class="nav-link">Galeri</a>
+                    <a href="{{route('frontend.gallery.index')}}" class="nav-link">Galeri</a>
                 </li>
                 <li class="nav-item">
                     <a
